@@ -6,4 +6,5 @@ app_name = 'generator_url'
 urlpatterns = [
     path('', views.home, name='home'),
     path('list', views.url_list, name='list'),
+    path('<path:short_url>', views.short, name='short'),
 ]

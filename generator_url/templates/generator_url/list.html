@@ -8,7 +8,7 @@
     </h3>
     <ul>
         {% for el in lst %}
-            <li><a href="{{ el.original_url }}">{{ el }}</a></li>
+            <li><a href="/{{el.short_url}}">https://{{ domain }}/{{ el.short_url }}</a></li>
         {% empty %}
             <h4>Короткие URL еще не добавлены. Вы можете добавить новый.</h4>
         {% endfor %}
