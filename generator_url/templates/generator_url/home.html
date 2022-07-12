@@ -1,0 +1,21 @@
+{% extends "generator_url/base.html" %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <h4>Введите URL:</h4>
+        <form action="." method='post'>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Сократить">
+        </form>
+    <h4>
+        <a href="{% url 'generator_url:list' %}">Список Ваших адресов</a>
+    </h4>
+    {% else %}
+        <h4>
+            Пожалуйста, зарегистрируйтесь или авторизируйтесь, чтобы воспользоваться сервисом.
+        </h4>
+    {% endif %}
+{% endblock %}

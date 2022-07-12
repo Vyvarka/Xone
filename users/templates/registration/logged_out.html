@@ -1,0 +1,13 @@
+{% extends 'generator_url/base.html' %}
+
+{% block title %}
+Выход
+{% endblock %}
+
+{% block content %}
+    <h4>
+        Вы покинули кабинет пользователя. <br>
+        Спасибо за посещение нашего сайта!
+    </h4>
+    <a href="{% url 'generator_url:home' %}">На главную</a>
+{% endblock %}

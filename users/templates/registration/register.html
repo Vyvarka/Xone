@@ -1,0 +1,15 @@
+{% extends "generator_url/base.html" %}
+
+{% block title %}
+Регистрация
+{% endblock %}
+
+{% block content %}
+    <h4>Регистрация пользователя</h4>
+    <form method="post" action="{% url 'users:register' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="submit">Создать</button>
+        <input type="hidden" name="next" value="{% url 'generator_url:home' %}" />
+    </form>
+{% endblock %}

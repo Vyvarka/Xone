@@ -1,0 +1,16 @@
+{% extends "generator_url/base.html" %}
+
+{% block title %}Список{% endblock %}
+
+{% block content %}
+    <h3>
+        Список уникальных коротких URL:
+    </h3>
+    <ul>
+        {% for el in lst %}
+            <li><a href="{{ el.original_url }}">{{ el }}</a></li>
+        {% empty %}
+            <h4>Короткие URL еще не добавлены. Вы можете добавить новый.</h4>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "generator_url/base.html" %}
+
+{% block title %}Оригинальный URL{% endblock %}
+
+{% block content %}
+    <h3>
+        Оригинальный URL: <span style="color: blue;">{{ url.original_url }}</span> ||
+        Сокращенная ссылка: <span style="color: red;">{{ url.short_url }}</span><br>
+        Создан: {{ url.created }}
+    </h3>
+{% endblock %}
