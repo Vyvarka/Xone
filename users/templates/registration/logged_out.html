@@ -5,9 +5,11 @@
 {% endblock %}
 
 {% block content %}
+    <h4 style="text-align: center;">
+        <a href="{% url 'generator_url:home' %}">На главную</a>
+    </h4>
     <h4>
         Вы покинули кабинет пользователя. <br>
-        Спасибо за посещение нашего сайта!
+        Благодарим за использование сервиса!
     </h4>
-    <a href="{% url 'generator_url:home' %}">На главную</a>
 {% endblock %}

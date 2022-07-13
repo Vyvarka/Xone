@@ -6,12 +6,12 @@
 
 {% block content %}
 {% if form.errors %}
-    <h4>Попробуйте снова либо зарегистрируйтесь заново</h4>
+    <h4>Попробуйте снова либо зарегистрируйтесь</h4>
 {% endif %}
     <form method="post" action="{% url 'users:login' %}">
         {% csrf_token %}
         {{ form.as_p }}
-        <button name="submit">Войти</button>
+        <button type="submit" class="btn btn-success">Войти</button>
         <input type="hidden" name="next" value="{% url 'generator_url:home' %}" />
     </form>
 {% endblock %}

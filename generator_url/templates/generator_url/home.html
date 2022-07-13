@@ -4,13 +4,14 @@
 
 {% block content %}
     {% if user.is_authenticated %}
-        <h4>Введите URL:</h4>
+        <h3>Введите URL:</h3>
         <form action="." method='post'>
             {% csrf_token %}
             {{ form.as_p }}
-            <input type="submit" value="Сократить">
+            <input type="submit" class="btn btn-success" value="Сократить">
         </form>
-    <h4>
+    <br>
+    <h4 style="text-align: center;">
         <a href="{% url 'generator_url:list' %}">Список сокращенных ссылок</a>
     </h4>
     {% else %}

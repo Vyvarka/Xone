@@ -3,13 +3,13 @@
 {% block title %}Список{% endblock %}
 
 {% block content %}
-    <h4>
+    <h4 style="text-align: center;">
         <a href="{% url 'generator_url:home' %}">На главную</a>
     </h4>
-    <h3  style="color: blue;">
+    <h3>
         Список ссылок:
     </h3>
-    <ul>
+    <ul style="background-color: LightCyan;">
         {% for el in lst %}
             <li><a href="/{{el.short_url}}">https://{{ domain }}/{{ el.short_url }}</a></li>
         {% empty %}

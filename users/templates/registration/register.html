@@ -9,7 +9,7 @@
     <form method="post" action="{% url 'users:register' %}">
         {% csrf_token %}
         {{ form.as_p }}
-        <button name="submit">Создать</button>
+        <button type="submit" class="btn btn-success">Создать</button>
         <input type="hidden" name="next" value="{% url 'generator_url:home' %}" />
     </form>
 {% endblock %}
