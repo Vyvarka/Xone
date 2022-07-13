@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 
 from .models import Url
 from .forms import UrlForm
-from .logic import url_generator
+from .logic import url_generator, check_url_owner
 
 
 def home(request):
@@ -37,4 +37,5 @@ def url_list(request):
 def short(request, short_url):
     """Контроллер перенаправления"""
     url = get_object_or_404(Url, short_url=short_url)
+    check_url_owner(request, url)
     return redirect(url.original_url)

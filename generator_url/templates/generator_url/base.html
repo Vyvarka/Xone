@@ -14,7 +14,6 @@
         {% if user.is_authenticated %}
         <span>
             Привет, {{ user.username }}! || <a href="{% url 'users:logout' %}">Выход</a><br>
-            <a href="{% url 'generator_url:home' %}">На главную</a>
         </span>
         {% else %}
         <span>

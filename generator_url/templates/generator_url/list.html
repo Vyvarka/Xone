@@ -3,14 +3,17 @@
 {% block title %}Список{% endblock %}
 
 {% block content %}
-    <h3>
-        Список уникальных коротких URL:
+    <h4>
+        <a href="{% url 'generator_url:home' %}">На главную</a>
+    </h4>
+    <h3  style="color: blue;">
+        Список ссылок:
     </h3>
     <ul>
         {% for el in lst %}
             <li><a href="/{{el.short_url}}">https://{{ domain }}/{{ el.short_url }}</a></li>
         {% empty %}
-            <h4>Короткие URL еще не добавлены. Вы можете добавить новый.</h4>
+            <h4>URL еще не добавлены. Вы можете добавить новый.</h4>
         {% endfor %}
     </ul>
 {% endblock %}

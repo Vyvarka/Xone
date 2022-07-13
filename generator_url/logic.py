@@ -1,11 +1,18 @@
+from django.http import Http404
 from random import randint, choice
+
+
+def check_url_owner(request, value):
+    """Проверяет создавал ли пользователь текущую ссылку"""
+    if value.owner != request.user:
+        raise Http404
 
 
 def url_generator(n=6):
     '''
-    Генератор уникальных адресов длинной n
-    :param n: количество символов, которое сгенерирует программа после домена. По умолчанию - 6 символов
-    :return: уникальный адрес
+    Генерирует уникальный набор символов
+    :param n: количество символов, которое сгенерирует программа. По умолчанию - 6 символов
+    :return: уникальный набор символов
     '''
     lst_numbers = list(range(10))
     lst_symbols = [chr(x) for x in range(65, 123) if x not in [91, 92, 93, 94, 95, 96]]
