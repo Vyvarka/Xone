@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+
 
 from .models import Url
 from .forms import UrlForm
@@ -15,10 +17,15 @@ def home(request):
         # Отправлены данные POST; обработать данные.
         form = UrlForm(data=request.POST)
         if form.is_valid():
-            new_url = form.save(commit=False)  # сохраняем данные из формы, но не в БД
-            new_url.short_url = url_generator()  # генерируем уникальный адрес
-            new_url.owner = request.user  # добавляем владельца
-            new_url.save()  # сохраняем данные в БД
+            url = Url.objects.filter(original_url__exact=request.POST['original_url'])  # проверяем наличие URL в БД
+            user = User.objects.get(id=request.user.id)
+            if url:
+                url[0].owners.add(user)
+            else:
+                new_url = form.save(commit=False)  # сохраняем данные из формы, но не в БД
+                new_url.short_url = url_generator()  # генерируем уникальный адрес
+                new_url.save()  # сохраняем данные в БД
+                new_url.owners.add(user)  # добавляем владельца
             return redirect('generator_url:list')
     context = {'form': form}
     return render(request, 'generator_url/home.html', context)
@@ -27,7 +34,7 @@ def home(request):
 @login_required()
 def url_list(request):
     """Страница со всеми URLs авторизированного пользователя"""
-    lst = Url.objects.filter(owner=request.user)
+    lst = Url.objects.filter(owners=request.user)
     domain = request.META['HTTP_HOST']
     context = {'lst': lst, 'domain': domain}
     return render(request, 'generator_url/list.html', context)

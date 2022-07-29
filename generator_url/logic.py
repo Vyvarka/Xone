@@ -4,7 +4,8 @@ from random import randint, choice
 
 def check_url_owner(request, value):
     """Проверяет создавал ли пользователь текущую ссылку"""
-    if value.owner != request.user:
+    users = value.owners.all()  # выводим всех пользователей, которые связаны с этим URL
+    if request.user not in users:
         raise Http404
 
 
@@ -36,4 +37,11 @@ def test_url_generator(f, n=100_000):
           f'Длинна_2: {len(set(lst))}')
 
 
-test_url_generator(url_generator)
+# test_url_generator(url_generator)
+
+
+# class Spare (models .Model) :
+#     name = models.CharField(max_length=30)
+# class Machine(models.Model):
+#     name = models.CharField(max_length=30)
+#     spares = models.ManyToManyField(Spare)
